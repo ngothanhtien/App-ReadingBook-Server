@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #18392B 0%, #18392B 100%);
+        }
+        .container {
+            background: #0F5132;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        .success {
+            color: #28a745;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+        }
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .success-icon { color: #28a745; }
+        .error-icon { color: #dc3545; }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #042e0b;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #5a67d8;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Success Message -->
+        <div id="success-content">
+            <h2 style="font-size: 32px;color: white;" class="success">Email Verified Successfully!</h2>
+            <div class="icon success-icon">✅</div>
+            <p style="color: white; font-size: 22px;font-weight: bold;">You can now log in</p>
+            <p style="text-align: center;color: white; font-size: 20px;font-weight: bold;">@READINGCORNER</p>
+        </div>                                            
+        
+        <!-- Error Message -->
+        <div id="error-content" class="hidden">
+            <div class="icon error-icon">❌</div>
+            <h2 class="error">Verification Failed</h2>
+            <p id="error-message"></p>
+            <a href="/register" class="btn">Try Again</a>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        const success = urlParams.get('success');
+        
+        // Show appropriate content
+        if (success) {
+            document.getElementById('success-content').classList.remove('hidden');
+            document.getElementById('default-content').classList.add('hidden');
+        } else if (error) {
+            document.getElementById('error-content').classList.remove('hidden');
+            document.getElementById('error-message').textContent = error;
+            document.getElementById('default-content').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
