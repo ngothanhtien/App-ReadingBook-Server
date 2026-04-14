@@ -8,7 +8,7 @@ const confirmVerifyEmailTemplate = require("../views/confirmVerifyEmail");
 const {onlyRegularChar, onlyRegularCharAndNumber, isValidEmail, isValidPassword} = require("../errors/all_errors");
 
 const UserVerifycation = require("../models/userVerifycation");
-const UserResponseMessage = require("../models/userResponseMessage");
+const UserResponse_message = require("../models/userResponseMessage");
 
 const nodemailer = require("nodemailer")
 //unique String
@@ -475,12 +475,12 @@ const responseMessageUser = asyncHandler( async (req,res) =>{
         res.status(400);
         throw new Error("Vui lòng nhập đầy đủ thông tin!");
     }
-    const findEmail = await UserResponseMessage.findOne({email});
+    const findEmail = await UserResponse_message.findOne({email});
     if (findEmail) {
         res.status(400);
         throw new Error("Email này đã được sử dụng để gửi tin nhắn rồi!");
     }
-    const newResponseMessage = await UserResponseMessage.create({
+    const newResponseMessage = await UserResponse_message.create({
         fullname,
         email,
         title_message,
