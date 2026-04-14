@@ -8,7 +8,7 @@ const confirmVerifyEmailTemplate = require("../views/confirmVerifyEmail");
 const {onlyRegularChar, onlyRegularCharAndNumber, isValidEmail, isValidPassword} = require("../errors/all_errors");
 
 const UserVerifycation = require("../models/userVerifycation");
-const UserResponseMessage = require("../models/UserResponseMessage");
+const UserResponseMessage = require("../models/userResponseMessage");
 
 const nodemailer = require("nodemailer")
 //unique String
@@ -358,7 +358,7 @@ const deleteUser = asyncHandler(async (req,res) => {
 const getUser = asyncHandler( async (req,res) => {
     const count_user = await User.countDocuments();
     const getAll_user = await User.find();
-    res.status(201).json({
+    res.status(200).json({
         count_user: count_user,
         users: getAll_user
     });
